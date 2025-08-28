@@ -1,0 +1,59 @@
+{
+  "name": "poc-web-components",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "rimraf dist .cache .tmp coverage reports",
+    "playwright-install": "npx playwright install",
+    "cucumber": "cucumber-js",
+
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite build && vite preview",
+
+    "test:lint": "eslint --cache --ext .ts . && tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tests.json --noEmit",
+    "test:lint-fix": "eslint --cache --ext .ts --fix .",
+    "test:unit": "vitest run --coverage",
+    "test:feature": "run-s playwright-install cucumber",
+    "test": "run-s test:lint test:unit test:feature",
+
+    "coverage:flatten": "rimraf coverage/.nyc-tmp && mkdir -p coverage/.nyc-tmp && cp coverage/*/*.json coverage/.nyc-tmp",
+    "report:coverage": "run-s coverage:flatten && nyc report --temp-dir=coverage/.nyc-tmp --report-dir=reports --reporter=lcov",
+    "report:feature": "node scripts/report-bdd.mjs",
+    "report": "run-p report:coverage report:feature"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.2.0",
+    "@fortawesome/free-brands-svg-icons": "^7.2.0",
+    "@fortawesome/free-regular-svg-icons": "^7.2.0",
+    "@fortawesome/free-solid-svg-icons": "^7.2.0"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.6.0",
+    "@cucumber/message-streams": "^4.0.1",
+    "@playwright/test": "^1.58.2",
+    "@stylistic/eslint-plugin": "^5.9.0",
+    "@tsconfig/strictest": "^2.0.8",
+    "@types/node": "^24.11.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.0",
+    "@typescript-eslint/parser": "^8.56.0",
+    "@vitest/coverage-v8": "^4.0.18",
+    "esbuild": "^0.27.3",
+    "eslint": "^9.39.3",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-no-relative-import-paths": "^1.6.1",
+    "jiti": "^2.6.1",
+    "jsdom": "^27.4.0",
+    "npm-run-all": "^4.1.5",
+    "nyc": "^17.1.0",
+    "playwright": "^1.58.2",
+    "rimraf": "^6.1.3",
+    "slugify": "^1.6.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "v8-to-istanbul": "^9.3.0",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18"
+  }
+}

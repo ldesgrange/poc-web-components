@@ -1,0 +1,16 @@
+i {
+  vertical-align: bottom;
+  &.success { color: var(--color-severity-success); }
+  &.danger { color: var(--color-severity-danger); }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.actions {
+  padding-top: 0.5rem;
+  width: 100%;
+  text-align: right;
+}

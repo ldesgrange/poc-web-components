@@ -1,0 +1,148 @@
+:host {
+  font-family: var(--font-family-base), sans-serif;
+  font-size: var(--font-size-base);
+
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.info {
+  color: var(--color-severity-info);
+  background-color: var(--color-severity-info-background);
+}
+.success {
+  color: var(--color-severity-success);
+  background-color: var(--color-severity-success-background);
+}
+.warning {
+  color: var(--color-severity-warning);
+  background-color: var(--color-severity-warning-background);
+}
+.error {
+  color: var(--color-severity-danger);
+  background-color: var(--color-severity-danger-background);
+}
+
+.message {
+  border-radius: var(--radius-m);
+  box-shadow: var(--color-card-shadow);
+  padding: 0.3rem 0.6rem;
+}
+
+.card {
+  color: var(--color-text);
+  background-color: var(--color-background);
+  border-radius: var(--radius-l);
+  box-shadow: var(--color-card-shadow);
+  padding: 0.6rem;
+}
+
+/* Dialogs. */
+dialog {
+  color: var(--color-text);
+  background-color: var(--color-background);
+  border: 0;
+  border-radius: var(--radius-l);
+  box-shadow: var(--color-card-shadow);
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  .close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  #status-message {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Form elements. */
+label {
+  display: block;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.input-group {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  input[type="text"],
+  input[type="password"] {
+    padding: 0.6rem;
+    border: 1px solid var(--color-card-shadow);
+    border-radius: var(--radius-s);
+    font: inherit;
+    color: var(--color-text);
+    background: var(--color-background);
+
+    outline: 1px solid var(--color-border);
+    outline-offset: -1px;
+
+    &:focus {
+      outline: 2px solid var(--color-border-active);
+      outline-offset: -2px;
+    }
+  }
+}
+
+button {
+  background: var(--color-primary-background);
+  color: var(--color-primary-text);
+  border: 0;
+  border-radius: var(--radius-m);
+  padding: 0.6rem 0.9rem;
+  font: inherit;
+  cursor: pointer;
+
+  &:hover { background: var(--color-primary-background-hover); }
+  &:active { background: var(--color-primary-background-active); }
+}
+
+/* Font-awesome icons. */
+.fa {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+  &.fa-spin {
+    animation: fa-spin 2s linear infinite;
+    display: inline-block;
+  }
+}
+
+@keyframes fa-spin {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+    <option name="myFilePath" value="" />
+    <option name="myNameFilter" value="" />
+    <option name="cucumberJsArguments" value="--profile override" />
+    <option name="workingDirectory" value="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>

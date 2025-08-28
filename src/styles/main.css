@@ -1,0 +1,64 @@
+/**
+ * This is the main application stylesheet.
+ * Given we are using web components, this file should only contain:
+ * - global resets
+ * - global variables
+ */
+
+/* CSS Reset. */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Global variables. */
+:root {
+  /* Typography. */
+  --font-family-base: system-ui, sans-serif;
+  --font-size-base: 16px;
+
+  /* Color system. */
+  color-scheme: light dark;
+  --color-text: light-dark(#212529, #f8f9fa);
+  --color-text-hover: light-dark(hsl(from var(--color-text) h s calc(l + 10)), hsl(from var(--color-text) h s calc(l - 10)));
+  --color-background: light-dark(#f8f9fa, #343a40);
+  --color-primary-text: light-dark(#ffffff, #ffffff);
+  --color-primary-background: light-dark(#007bff, #0069d9);
+  --color-primary-background-hover: hsl(from var(--color-primary-background) h s calc(l + 10));
+  --color-primary-background-active: hsl(from var(--color-primary-background) h s calc(l - 20));
+
+  --color-border: light-dark(#475569, #475569);
+  --color-border-active: light-dark(#007bff, #0069d9);
+
+  --color-severity-info: #0369a1;
+  --color-severity-info-background: hsl(from var(--color-severity-info) h s calc(l + 60));
+  --color-severity-success: #15803d;
+  --color-severity-success-background: hsl(from var(--color-severity-success) h s calc(l + 60));
+  --color-severity-warning: #bd3500;
+  --color-severity-warning-background: hsl(from var(--color-severity-warning) h s calc(l + 50));
+  --color-severity-danger: #b91c1c;
+  --color-severity-danger-background: hsl(from var(--color-severity-danger) h s calc(l + 50));
+
+  /* Shadow for card-like components. */
+  --color-card-shadow: 0 0 1px 1px hsla(0, 0%, 100%, 0.1) inset,
+                       0 0 0 1px hsla(0, 0%, 0%, 0.05),
+                       0 1px 6px hsla(0, 0%, 0%, 0.2);
+
+  /* Border radius. */
+  --radius-s: 5px;
+  --radius-m: 10px;
+  --radius-l: 20px;
+}
+
+* {
+  color: var(--color-text);
+  background-color: var(--color-background);
+}

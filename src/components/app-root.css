@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  padding: 1rem;
+
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+
+    #settings {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--color-text);
+      padding: 0.5rem;
+
+      &:hover {
+        color: var(--color-text-hover);
+      }
+    }
+  }
+}

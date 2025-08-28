@@ -1,0 +1,20 @@
+default:
+  parallel: 1
+  loader: ts-node/esm
+  import:
+    - tests/feature/support/*.ts
+    - tests/feature/steps/**/*.ts
+    - src/core/utils.ts
+  format:
+    - message:reports/feature.ndjson
+  paths:
+    - tests/feature/
+  tags: not @pending
+
+override:
+  parallel: 1
+  loader: ts-node/esm
+  import:
+    - tests/feature/support/*.ts
+    - tests/feature/steps/**/*.ts
+    - src/core/utils.ts

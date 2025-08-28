@@ -1,0 +1,11 @@
+[settings]
+experimental = true # So hooks are run.
+
+[tools]
+node = "24"
+
+[hooks]
+postinstall = [
+    "npm install",
+    "npx playwright install",
+]
