@@ -1,3 +1,4 @@
+import { IV_LENGTH_BYTES } from '@app/core/master-key-utils'
 import { openDatabase, putRecord, getRecord, deleteRecord, getAllRecords } from './db-utils'
 
 export interface DbInfo {
@@ -89,7 +90,7 @@ export class EncryptingStorageService extends StorageService<EncryptingStorageOp
     }
 
     const encodedData = new TextEncoder().encode(JSON.stringify(data))
-    const iv = crypto.getRandomValues(new Uint8Array(12))
+    const iv = crypto.getRandomValues(new Uint8Array(IV_LENGTH_BYTES))
     const encryptedData = await crypto.subtle.encrypt(
       { name: 'AES-GCM', iv: iv },
       this.encryptionKey,

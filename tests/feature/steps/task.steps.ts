@@ -68,7 +68,7 @@ Given('an initialized and unlocked encryption key', async function (this: Custom
   try {
     const unlockComponent = this.page.locator('app-unlock')
     await expect(unlockComponent).toBeAttached({ timeout: 5000 })
-    const unlockButton = unlockComponent.locator('button#submit-unlock')
+    const unlockButton = unlockComponent.locator('button#password-unlock')
     await unlockButton.waitFor({ state: 'visible', timeout: 5000 })
     await unlockComponent.locator('input#unlock-password').fill('correct-password')
     await unlockButton.click()

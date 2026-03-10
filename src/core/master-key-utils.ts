@@ -17,7 +17,7 @@ export const HKDF_SALT_LENGTH_BYTES = 32
 /** The minimum challenge length for WebAuthn is 16 bytes, use 32 bytes to align with the hash function. */
 const WEB_AUTHN_CHALLENGE_LENGTH_BYTES = 32
 /** Recommended Initialization Vector length for AES-GCM (96 bits). */
-const IV_LENGTH_BYTES = 12
+export const IV_LENGTH_BYTES = 12
 /** AES-GCM key length (256 bits) */
 export const AES_GCM_LENGTH_BITS = 256
 
@@ -174,11 +174,11 @@ export function newMasterKey(overrides?: Partial<MasterKey>): MasterKey {
 
 export async function generateMasterKey(id: string, password: string): Promise<MasterKey> {
   // Generate a random 256-bit master key.
-  const masterKey = (await crypto.subtle.generateKey(
+  const masterKey = await crypto.subtle.generateKey(
     { name: 'AES-GCM', length: AES_GCM_LENGTH_BITS },
     true,
     ['encrypt', 'decrypt'],
-  ))
+  )
 
   return setPasswordWrapping(newMasterKey({ id: id }), masterKey, password)
 }
@@ -194,8 +194,6 @@ export async function isWebAuthnPRFSupported(): Promise<boolean> {
 
 /**
  * Register a new WebAuthn credential.
- * Does not use PRF during registration as per best practices,
- * just creates the credential to be used later for PRF evaluations.
  */
 export async function registerWebAuthn(rpId: string): Promise<ArrayBuffer> {
   const challenge = crypto.getRandomValues(new Uint8Array(WEB_AUTHN_CHALLENGE_LENGTH_BYTES))
@@ -217,11 +215,12 @@ export async function registerWebAuthn(rpId: string): Promise<ArrayBuffer> {
       requireResidentKey: false,
     },
     extensions: {
+      // Request PRF support.
       prf: {
         eval: {
           first: salt,
         },
-      }, // Request PRF support.
+      },
     } as AuthenticationExtensionsClientInputs,
   }
 

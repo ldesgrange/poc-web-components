@@ -19,7 +19,7 @@ template.innerHTML = `
         <input type="password" id="unlock-password" />
       </div>
       <div class="input-group">
-        <button id="submit-unlock">Unlock</button>
+        <button id="password-unlock">Unlock</button>
       </div>
     </section>
     <section id="webauthn-unlock-section" hidden>
@@ -38,14 +38,14 @@ export class AppUnlock extends HTMLElement {
   private masterKeyService = inject(MasterKeyService)
   private dialog!: HTMLDialogElement
   private passwordInput!: HTMLInputElement
-  private unlockButton!: HTMLButtonElement
+  private passwordUnlockButton!: HTMLButtonElement
   private webauthnUnlockButton!: HTMLButtonElement
   private statusMessage!: HTMLElement
 
-  private onUnlockClickRef = () => this.handleUnlock()
+  private onPasswordUnlockClickRef = () => this.handlePasswordUnlock()
   private onWebAuthnUnlockClickRef = () => this.handleWebAuthnUnlock()
   private onPasswordKeyDownRef = (e: KeyboardEvent) => {
-    if (e.key === 'Enter') this.handleUnlock()
+    if (e.key === 'Enter') this.handlePasswordUnlock()
   }
 
   constructor() {
@@ -60,11 +60,11 @@ export class AppUnlock extends HTMLElement {
   override connectedCallback() {
     this.dialog = this.shadowRoot!.querySelector('dialog')!
     this.passwordInput = this.shadowRoot!.getElementById('unlock-password') as HTMLInputElement
-    this.unlockButton = this.shadowRoot!.getElementById('submit-unlock') as HTMLButtonElement
+    this.passwordUnlockButton = this.shadowRoot!.getElementById('password-unlock') as HTMLButtonElement
     this.webauthnUnlockButton = this.shadowRoot!.getElementById('webauthn-unlock') as HTMLButtonElement
     this.statusMessage = this.shadowRoot!.getElementById('status-message')!
 
-    this.unlockButton.addEventListener('click', this.onUnlockClickRef)
+    this.passwordUnlockButton.addEventListener('click', this.onPasswordUnlockClickRef)
     this.webauthnUnlockButton.addEventListener('click', this.onWebAuthnUnlockClickRef)
     this.passwordInput.addEventListener('keydown', this.onPasswordKeyDownRef)
 
@@ -72,7 +72,7 @@ export class AppUnlock extends HTMLElement {
   }
 
   override disconnectedCallback() {
-    this.unlockButton.removeEventListener('click', this.onUnlockClickRef)
+    this.passwordUnlockButton.removeEventListener('click', this.onPasswordUnlockClickRef)
     this.webauthnUnlockButton.removeEventListener('click', this.onWebAuthnUnlockClickRef)
     this.passwordInput.removeEventListener('keydown', this.onPasswordKeyDownRef)
   }
@@ -81,11 +81,11 @@ export class AppUnlock extends HTMLElement {
     this.dialog.showModal()
   }
 
-  private async handleUnlock() {
+  private async handlePasswordUnlock() {
     const password = this.passwordInput.value
     if (!password) return
 
-    this.unlockButton.disabled = true
+    this.passwordUnlockButton.disabled = true
     this.statusMessage.innerHTML = ''
 
     try {
@@ -95,7 +95,7 @@ export class AppUnlock extends HTMLElement {
       this.complete()
     } catch {
       this.statusMessage.innerHTML = '<div class="error message">Invalid password.</div>'
-      this.unlockButton.disabled = false
+      this.passwordUnlockButton.disabled = false
     }
   }
 

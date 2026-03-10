@@ -23,7 +23,7 @@ When('the user provides {string} password', async function (this: CustomWorld, v
 
   const passwordInput = component.locator('input#unlock-password')
   await passwordInput.fill(password)
-  await component.locator('button#submit-unlock').click()
+  await component.locator('button#password-unlock').click()
 })
 
 Then('the key is {string}', async function (this: CustomWorld, status: 'unlocked' | 'not unlocked') {
