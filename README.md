@@ -22,6 +22,8 @@ But the internet is full of wonderful people, and of course someone thought abou
 
 At the same time, I wanted to see how easy it would be to build an app only based on web standards, with minimal dependencies.
 
+See my [blog post about this PoC](https://blog.desgrange.net/post/2026/03/16/secure-storage-with-web-apis.html).
+
 ## Setup
 
 This uses [mise-en-place](https://mise.jdx.dev/) to set up the development environment.
@@ -93,12 +95,3 @@ Scripts:
 - Code coverage report is generated in `reports/lcov-report` directory using `npm run report:coverage`.
 - Feature report is generated in `reports/feature-report.html` using `npm run report:feature`.
 - All reports are generated with `npm run report`.
-
-# Misc
-## Improvements
-- [ ] Cucumber HTML reports are not great, try to find an alternative:
-  - [cucumber-html-reporter](https://github.com/gkushang/cucumber-html-reporter) generates nice reports but does not support [NDJSON](https://github.com/gkushang/cucumber-html-reporter/issues/229) format and does not seem to be maintained.
-  - [multiple-cucumber-html-reporter](https://github.com/WasiqB/multiple-cucumber-html-reporter) seems maintained but does not support [NDJSON](https://github.com/WasiqB/multiple-cucumber-html-reporter/issues/193) format either.
-## References
-- https://lyra.horse/blog/2025/08/you-dont-need-js/
-- https://nolanlawson.com/2025/06/16/selfish-reasons-for-building-accessible-uis/
